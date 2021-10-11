@@ -8,6 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import LinearProgress from '@mui/material/LinearProgress';
 import { isMobile } from "../components/utils"
+import Futter from './Futter'
 
 import "./style.css";
 
@@ -25,7 +26,11 @@ function Vaccine() {
   const [inputValue, setInputValue] = useState([]);
   const [totalSlotsDetails, setTotalSlotsDetails] = React.useState([]);
   useEffect(() => {
-    let steTimer = setInterval(() => getVacationSlot(), 5000)
+    let todayDate = new Date();
+    const lang = todayDate.toLocaleTimeString('en-GB');
+    const timer= "18" < lang ? 2000: 10000;
+    getVacationSlot();
+    let steTimer = setInterval(() => getVacationSlot(), timer)
 
     return(
      ()=> clearInterval(steTimer)
@@ -87,8 +92,8 @@ function Vaccine() {
         spacing={1}
       > 
           {totalSlots &&
-          totalSlots.length > 0 &&
-          totalSlots.map((data, value) => CardDetails(data, value))}
+          totalSlots.length > 0 ?
+          totalSlots.map((data, value) => CardDetails(data, value)): <span className="data-loading"> { inputValue.length >0 ? "No Data Present..." :  "Data Loading ..."}</span>}
       </Stack>
     );
   };
@@ -220,6 +225,7 @@ function Vaccine() {
           {console.log("Dat",inputValue )}
         </div>
       </div>
+      <Futter />
     </div>
   );
 }

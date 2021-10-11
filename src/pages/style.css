@@ -22,3 +22,34 @@
 .mobile-name-test-style{
     text-align: left;
 }
+.futter-body{
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    background-color: #cfd0d7b0;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    margin-top: 50px;
+    padding: 0px 20px;
+}
+.futter-body span {
+    font-size: 10px;
+    font-weight: 500;
+}
+.data-loading{
+    font-size: 20px;
+    font-weight: 600;
+    height: 60vh;
+    align-items: center;
+}
+
+
+@media only screen and (min-width: 780px) {
+    .futter-body {
+        padding: 0px 21%;
+    }
+    .futter-body span {
+        font-size: 17px;
+        font-weight: 600;
+    }
+  }
