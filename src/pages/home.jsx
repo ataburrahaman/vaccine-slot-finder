@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import logo from "../logo.svg";
 import { motion } from "framer-motion";
 
