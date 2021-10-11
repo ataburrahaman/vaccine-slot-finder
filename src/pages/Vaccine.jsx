@@ -179,7 +179,7 @@ function Vaccine() {
   const getVacationSlot = () => {
     let todayDate = new Date();
     const lang = todayDate.toLocaleTimeString('en-GB');
-    const date =`${ "15" < lang ? todayDate.getDate() + 1 : todayDate.getDate()}-${todayDate.getMonth()+1}-${todayDate.getUTCFullYear()}`
+    const date =`${ "17" < lang ? todayDate.getDate() + 1 : todayDate.getDate()}-${todayDate.getMonth()+1}-${todayDate.getUTCFullYear()}`
     console.log("date", date); 
     let myRequest =
       `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=728&date=${date}`;
