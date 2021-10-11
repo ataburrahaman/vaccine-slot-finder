@@ -1,0 +1,24 @@
+.slot-view{
+    color: green;
+    font-weight: 700;
+}
+.slot-view-text{
+    font-weight: 500;
+}
+.slot-text{
+    border: 1px solid;
+    border-radius: 7px;
+    float: right;
+    padding: 5px;
+}
+.free-slot{
+    background:  green;
+    color: cornsilk;
+}
+.paid-slot{
+    background: #ff2300;
+    color: cornsilk;
+}
+.mobile-name-test-style{
+    text-align: left;
+}

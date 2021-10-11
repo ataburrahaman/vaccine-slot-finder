@@ -1,0 +1,1 @@
+export const isMobile =  navigator.userAgentData.mobile || window.innerWidth <= 776

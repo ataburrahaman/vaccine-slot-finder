@@ -1,9 +1,13 @@
 .App {
   text-align: center;
+  background-color: rgb(234, 238, 243);
+  min-height: 100vh;
+  height: max-content;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 10px;
+
   pointer-events: none;
 }
 
