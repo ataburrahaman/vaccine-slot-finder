@@ -25,6 +25,10 @@ const mobile_diplay ={
 function Vaccine() {
   const [inputValue, setInputValue] = useState([]);
   const [totalSlotsDetails, setTotalSlotsDetails] = React.useState([]);
+  const [blockDetails, setBlockDetails] = React.useState([]);
+
+
+
   useEffect(() => {
     let todayDate = new Date();
     const lang = todayDate.toLocaleTimeString('en-GB');
@@ -36,6 +40,7 @@ function Vaccine() {
      ()=> clearInterval(steTimer)
     )
     //getVacationSlot();
+    // eslint-disable-next-line
   },[inputValue]);
 
   const getSlotSearchBox = () => {
@@ -52,7 +57,7 @@ function Vaccine() {
           size="small"
           id="combo-box-demo"
           className="Auto-complete-textbox"
-          options={top100Films}
+          options={blockDetails}
           sx={{ width: isMobile ? "90vw":  400 }}
           value={inputValue}
           onChange={(event, newValue) => {
@@ -78,7 +83,7 @@ function Vaccine() {
         alignItems="center"
         spacing={1}
       >
-        <LinearProgress sx={{width: isMobile ? "90vw" : "60vw", margin: "20px 0px"}}/>
+        <LinearProgress sx={{width: isMobile ? "100vw" : "100vw", height: "6px"}}/>
       </Stack>
     )
   }
@@ -201,11 +206,18 @@ function Vaccine() {
       .then((res) => {
         const slotModifyData= (res && res.centers) || [] ;
         setTotalSlotsDetails(slotModifyData);
+        setBlockDetails(generateTotalBlock(slotModifyData));
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  const generateTotalBlock = (allSlots)=>{
+    let blockDetail =  allSlots.length > 0 ? allSlots.map(data=>{ return{"label":data.block_name, "block": data.block_name}}) : top100Films
+    blockDetail = blockDetail.concat(top100Films);
+    return blockDetail.filter((item, pos, self) => self.findIndex(v => v.label === item.label) === pos);
+  }
 
   let generateFilterSlot=(allSlots, filterBlock)=>{
      return inputValue.length > 0 ? allSlots.filter(item => inputValue.some(filter => filter.block === item.block_name)) : allSlots;
@@ -213,14 +225,15 @@ function Vaccine() {
 
   return (
     <div>
+      {getLoadder()}
       <Typography sx={{ fontSize: isMobile? 18 : 54, ...mobile_diplay }} gutterBottom>
         Vaccination Center And Slots Availability
       </Typography>
 
       <div>
         {getSlotSearchBox()}
-       {getLoadder()}
-        <div style={{ marginTop: "-5px" }}>
+       
+        <div style={{ marginTop: "10px" }}>
           {getSlotDetails(generateFilterSlot(totalSlotsDetails, inputValue))}
           {console.log("Dat",inputValue )}
         </div>
